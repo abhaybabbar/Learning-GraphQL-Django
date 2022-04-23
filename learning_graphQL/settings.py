@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books',
+    'quiz',
     "graphene_django",
 ]
 
@@ -83,7 +84,7 @@ DATABASES = {
 }
 
 GRAPHENE = {
-    "SCHEMA": "books.schema.schema"
+    "SCHEMA": "quiz.schema.schema"
 }
 
 
