@@ -83,11 +83,25 @@ class CategoryDeleteMutation(graphene.Mutation):
         category = Category.objects.get(id=id)
         category.delete()
         return cls(ok=True)
+
+class QuizzesAddMutation(graphene.Mutation):
+    class Arguments:
+        title = graphene.String(required=True)
+        category_id = graphene.Int(required=True)
     
+    quiz = graphene.Field(QuizzesType)
+    ok = graphene.Boolean()
+    
+    @classmethod
+    def mutate(cls, root, info, title, category_id):
+        quiz = Quizzes(title=title, category_id=category_id)
+        quiz.save()
+        return QuizzesAddMutation(quiz=quiz, ok=True)
     
 class Mutation(graphene.ObjectType):
     add_category = CategoryAddMutation.Field()
     update_category = CategoryUpdateMutation.Field()
     delete_category = CategoryDeleteMutation.Field()
+    add_quiz = QuizzesAddMutation.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

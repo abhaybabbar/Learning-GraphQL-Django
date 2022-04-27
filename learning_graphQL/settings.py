@@ -84,7 +84,7 @@ DATABASES = {
 }
 
 GRAPHENE = {
-    "SCHEMA": "quiz.schema.schema"
+    "SCHEMA": "learning_graphQL.schema.schema"
 }
 
 
